@@ -1,3 +1,5 @@
+#The working directory should contain the file 'household_power_consumption'
+#Install the 'dplyr' package if not installed already
 #Load in necessary libraries
 library(dplyr)
 library(data.table)
@@ -6,7 +8,7 @@ library(data.table)
 data <- fread("household_power_consumption.txt", 
               na.strings="?",stringsAsFactors = FALSE)
 
-#my_data <- data[data$Date %in% as.Date(c('2012-01-05', '2012-01-09')),]
+# Filters the necessary data between dates 1/2/2007 - 2/2/2007
 my_data <- filter(data, grep("^[1,2]/2/2007", Date))
 
 # Convert global active power column, global reactive power colums, 
@@ -68,5 +70,6 @@ plot(strptime(my_data$Timestamp, "%d/%m/%Y %H:%M:%S"),
      xlab = "datetime", ylab = "Global_reactive_power")
 
 dev.off()
-
 #The plot is directly saved as 'plot4.png' in the working directory
+
+
